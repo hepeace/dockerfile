@@ -1,5 +1,5 @@
 FROM centos7:latest
-MAINTAINER pqlu <pqlu@tudou.com>
+MAINTAINER Tudou-ft01413 <ninghe@tudou.com>
 
 
 RUN rm -f /etc/yum.repos.d/systemd.repo
