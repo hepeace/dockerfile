@@ -1,0 +1,18 @@
+FROM centos7:latest
+MAINTAINER pqlu <pqlu@tudou.com>
+
+
+RUN rm -f /etc/yum.repos.d/systemd.repo
+RUN yum install -y curl wget tar bzip2 unzip vim-enhanced passwd sudo yum-utrils hostname net-tools rsync man openssh openssh-clients openssh-server libssh2
+RUN yum clean all 
+RUN sed -i '/^#Port 22/a Port 22022' /etc/ssh/sshd_config
+
+
+RUN chmod 600 /root/.ssh/authorized_keys;
+
+RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N ''
+
+EXPOSE 22022
+
+ENTRYPOINT ["/usr/sbin/sshd", "-D"]
+
